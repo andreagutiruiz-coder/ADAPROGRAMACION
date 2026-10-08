@@ -1,14 +1,12 @@
 
 public class Residuo implements Comparable <Residuo>{
 	 private String Nombre;
-     private int Peso;
-     private int Tamaño;
+     private double Peso;
      
      
-	 public Residuo(String nombre, int peso, int tamaño) {
+	 public Residuo(String nombre, double peso) {
 		Nombre = nombre;
 		Peso = peso;
-		Tamaño = tamaño;
 	}
 
 
@@ -28,7 +26,7 @@ public class Residuo implements Comparable <Residuo>{
 	 }
 
 
-	 public int getPeso() {
+	 public double getPeso() {
 		 return Peso;
 	 }
 
@@ -38,20 +36,14 @@ public class Residuo implements Comparable <Residuo>{
 	 }
 
 
-	 public int getTamaño() {
-		 return Tamaño;
-	 }
-
-
-	 public void setTamaño(int tamaño) {
-		 Tamaño = tamaño;
-	 }
-
-
 	 @Override
 	 public int compareTo(Residuo o) {
 		// TODO Auto-generated method stub
-		return 0;
+	 return Double.compare(this.Peso, o.Peso);
 	 }
-     
+	 
+	 @Override
+	 public String toString() {
+	     return Nombre + " - " + Peso + " kg";
+	 }
 }

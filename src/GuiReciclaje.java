@@ -14,8 +14,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class GuiReciclaje extends JFrame {
-ArrayList <Residuo> listaResiduos= new ArrayList();
-DefaultListModel Residuomodelo = new DefaultListModel();
+ArrayList <Residuo> listaResiduos= new ArrayList<>();
+DefaultListModel<String> tiposModelo = new DefaultListModel<>();
+DefaultListModel <Residuo> Residuomodelo = new DefaultListModel<>();
 	private static final long serialVersionUID = 1L;
 	private JTextField textNombre;
 
