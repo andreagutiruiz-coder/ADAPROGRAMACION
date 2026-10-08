@@ -19,6 +19,7 @@ DefaultListModel<String> tiposModelo = new DefaultListModel<>();
 DefaultListModel <Residuo> Residuomodelo = new DefaultListModel<>();
 	private static final long serialVersionUID = 1L;
 	private JTextField textNombre;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -68,6 +69,15 @@ DefaultListModel <Residuo> Residuomodelo = new DefaultListModel<>();
 		textNombre.setBounds(136, 22, 96, 18);
 		getContentPane().add(textNombre);
 		textNombre.setColumns(10);
+		
+		textField = new JTextField();
+		textField.setBounds(136, 268, 96, 18);
+		getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("Peso Recolectado en KG:");
+		lblNewLabel_3.setBounds(10, 271, 158, 12);
+		getContentPane().add(lblNewLabel_3);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
