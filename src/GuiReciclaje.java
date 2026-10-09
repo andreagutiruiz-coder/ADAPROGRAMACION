@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+import javax.swing.AbstractButton;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -15,11 +17,12 @@ import java.awt.event.ActionEvent;
 
 public class GuiReciclaje extends JFrame {
 ArrayList <Residuo> listaResiduos= new ArrayList<>();
-DefaultListModel<String> tiposModelo = new DefaultListModel<>();
-DefaultListModel <Residuo> Residuomodelo = new DefaultListModel<>();
+DefaultListModel tiposModelo = new DefaultListModel<>();
+DefaultListModel AcumuladoModelo = new DefaultListModel<>();
 	private static final long serialVersionUID = 1L;
 	private JTextField textNombre;
-	private JTextField textField;
+	private JTextField textKilos;
+	
 
 	/**
 	 * Launch the application.
@@ -41,21 +44,28 @@ DefaultListModel <Residuo> Residuomodelo = new DefaultListModel<>();
 	 * Create the frame.
 	 */
 	public GuiReciclaje() {
+		
+		tiposModelo.addElement("PET");
+        tiposModelo.addElement("Cartón");
+        tiposModelo.addElement("Aluminio");
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 612, 404);
 		getContentPane().setLayout(null);
 		
-		JList list = new JList();
-		list.setBounds(34, 91, 121, 145);
-		getContentPane().add(list);
+		JList listResiduo = new JList();
+		listResiduo.setBounds(34, 91, 121, 145);
+		getContentPane().add(listResiduo);
+		listResiduo.setModel(tiposModelo);
 		
 		JLabel lblNewLabel = new JLabel("RESIDUO");
 		lblNewLabel.setBounds(72, 69, 44, 12);
 		getContentPane().add(lblNewLabel);
 		
-		JList list_1 = new JList();
-		list_1.setBounds(302, 106, 274, 87);
-		getContentPane().add(list_1);
+		JList listAcumulado = new JList();
+		listAcumulado.setBounds(302, 106, 274, 87);
+		getContentPane().add(listAcumulado);
+		listAcumulado.setModel(AcumuladoModelo);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre del estudiante:");
 		lblNewLabel_1.setBounds(10, 25, 121, 12);
@@ -70,13 +80,13 @@ DefaultListModel <Residuo> Residuomodelo = new DefaultListModel<>();
 		getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setBounds(136, 268, 96, 18);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		textKilos = new JTextField();
+		textKilos.setBounds(136, 268, 96, 18);
+		getContentPane().add(textKilos);
+		textKilos.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Peso Recolectado en KG:");
-		lblNewLabel_3.setBounds(10, 271, 158, 12);
+		lblNewLabel_3.setBounds(10, 271, 208, 12);
 		getContentPane().add(lblNewLabel_3);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -85,7 +95,18 @@ DefaultListModel <Residuo> Residuomodelo = new DefaultListModel<>();
 		JButton btnNewButton = new JButton("Agregar Recolectado");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String tipo = (String) listResiduo.getSelectedValue(); 
+					double peso = Double.parseDouble(textKilos.getText());
+					String estudiante = textNombre.getText();
+					Residuo nuevo = new Residuo(tipo, peso, estudiante);
+					listaResiduos.add(nuevo);
+					JOptionPane.showMessageDialog(null, "Guardado correctamente");
+					textNombre.setText("");
+					textKilos.setText("");
+					listResiduo.clearSelection();
+				
 			}
+			
 		});
 		menuBar.add(btnNewButton);
 		

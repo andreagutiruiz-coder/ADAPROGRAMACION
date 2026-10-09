@@ -1,10 +1,13 @@
 
 public class Residuo implements Comparable <Residuo>{
+	private String estudiante;
 	 private String Nombre;
      private double Peso;
      
-     
-	 public Residuo(String nombre, double peso) {
+   
+
+	 public Residuo(String tipo, double peso, String nombre) {
+		this.estudiante = tipo;
 		Nombre = nombre;
 		Peso = peso;
 	}
@@ -13,6 +16,17 @@ public class Residuo implements Comparable <Residuo>{
 	 public Residuo() {
 	
 		// TODO Auto-generated constructor stub
+	 }
+
+
+
+	 public String getEstudiante() {
+		return estudiante;
+	}
+
+
+	 public void setEstudiante(String estudiante) {
+		 this.estudiante = estudiante;
 	 }
 
 
@@ -31,7 +45,7 @@ public class Residuo implements Comparable <Residuo>{
 	 }
 
 
-	 public void setPeso(int peso) {
+	 public void setPeso(double peso) {
 		 Peso = peso;
 	 }
 
@@ -44,6 +58,9 @@ public class Residuo implements Comparable <Residuo>{
 	 
 	 @Override
 	 public String toString() {
-	     return Nombre + " - " + Peso + " kg";
+	     return estudiante + " - " + Nombre + " - " + Peso + " kg";
 	 }
+
+
+	
 }
