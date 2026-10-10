@@ -1,57 +1,68 @@
 
-public class Residuo implements Comparable <Residuo>{
-	 private String Nombre;
-     private int Peso;
-     private int Tamaño;
-     
-     
-	 public Residuo(String nombre, int peso, int tamaño) {
+public class Residuo implements Comparable<Residuo> {
+	private String estudiante;
+	private String Nombre;
+	private double Peso;
+	
+	
+
+	
+	public Residuo(String estudiante, String Nombre, double Peso) {
+		super();
+		this.estudiante = estudiante;
+		this.Nombre = Nombre;
+		this.Peso = Peso;
+		
+	}
+
+	
+
+	public Residuo() {
+
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getEstudiante() {
+		return estudiante;
+	}
+
+	public void setEstudiante(String estudiante) {
+		this.estudiante = estudiante;
+	}
+
+	public String getNombre() {
+		return Nombre;
+	}
+
+	public void setNombre(String nombre) {
 		Nombre = nombre;
-		Peso = peso;
-		Tamaño = tamaño;
+	}
+
+	
+
+
+
+	public double getPeso() {
+		return Peso;
 	}
 
 
-	 public Residuo() {
-	
-		// TODO Auto-generated constructor stub
-	 }
+
+	public void setPeso(double peso) {
+		Peso = peso;
+	}
 
 
-	 public String getNombre() {
-		 return Nombre;
-	 }
 
-
-	 public void setNombre(String nombre) {
-		 Nombre = nombre;
-	 }
-
-
-	 public int getPeso() {
-		 return Peso;
-	 }
-
-
-	 public void setPeso(int peso) {
-		 Peso = peso;
-	 }
-
-
-	 public int getTamaño() {
-		 return Tamaño;
-	 }
-
-
-	 public void setTamaño(int tamaño) {
-		 Tamaño = tamaño;
-	 }
-
-
-	 @Override
-	 public int compareTo(Residuo o) {
+	@Override
+	public int compareTo(Residuo o) {
 		// TODO Auto-generated method stub
-		return 0;
+		 return Double.compare(this.Peso, o.Peso);
 	 }
-     
+	 
+	 @Override
+	 public String toString() {
+	     return estudiante+ ""+Nombre + " - " + Peso + " kg";
+	 }
+
 }
