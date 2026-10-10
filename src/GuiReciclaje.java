@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
+import javax.swing.AbstractButton;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -16,13 +17,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class GuiReciclaje extends JFrame {
-	ArrayList<Residuo> listaResiduos = new ArrayList();
-	DefaultListModel<Residuo> Residuomodelo = new DefaultListModel();
+	ArrayList<Residuo> listaResiduos = new ArrayList<>();
+	DefaultListModel<Residuo> Residuomodelo = new DefaultListModel<>();
 	DefaultListModel AcumuladoModelo = new DefaultListModel<>();
 	private static final long serialVersionUID = 1L;
 	private JTextField textEstudiante;
 	private JTextField textNombre;
-	private JTextField textPeso;
+	private JTextField textkilos;
 	
 
 	/**
@@ -45,8 +46,11 @@ public class GuiReciclaje extends JFrame {
 	 * Create the frame.
 	 */
 	public GuiReciclaje() {
-	
-        
+		
+		tiposModelo.addElement("PET");
+        tiposModelo.addElement("Cartón");
+        tiposModelo.addElement("Aluminio");
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 612, 404);
 		getContentPane().setLayout(null);
@@ -111,6 +115,7 @@ public class GuiReciclaje extends JFrame {
 			
 			
 			}
+			
 		});
 		menuBar.add(btnNewButton);
 
