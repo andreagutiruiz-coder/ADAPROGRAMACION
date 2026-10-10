@@ -145,13 +145,14 @@ public class GuiReciclaje extends JFrame {
 				        puntosa= Aluminio*pAlum;
 				        
 				    }
+				    Acumulado=puntosp+puntosc+puntosa;
 				}
 				    	 
 					 AcumuladoModelo.removeAllElements();
 					 AcumuladoModelo.addElement("PET de puntaje "+puntosp);
 					 AcumuladoModelo.addElement("Carton de puntaje "+puntosc);
 					 AcumuladoModelo.addElement("Aluminio de puntaje "+puntosa);
-					
+					AcumuladoModelo.addElement("totalacumulado "+Acumulado);
 			}
 				}
 		});
