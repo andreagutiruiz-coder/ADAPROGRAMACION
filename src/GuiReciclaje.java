@@ -47,10 +47,7 @@ public class GuiReciclaje extends JFrame {
 	 */
 	public GuiReciclaje() {
 		
-		tiposModelo.addElement("PET");
-        tiposModelo.addElement("Cartón");
-        tiposModelo.addElement("Aluminio");
-
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 612, 404);
 		getContentPane().setLayout(null);
@@ -87,10 +84,10 @@ public class GuiReciclaje extends JFrame {
 		getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 		
-		textPeso = new JTextField();
-		textPeso.setBounds(136, 66, 96, 18);
-		getContentPane().add(textPeso);
-		textPeso.setColumns(10);
+		textkilos = new JTextField();
+		textkilos.setBounds(136, 66, 96, 18);
+		getContentPane().add(textkilos);
+		textkilos.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Nombre");
 		lblNewLabel_3.setBounds(34, 38, 44, 12);
@@ -108,7 +105,7 @@ public class GuiReciclaje extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String estudiante =textEstudiante.getText();
 				String Nombre= textNombre.getText();
-				double Peso =Double.parseDouble(textPeso.getText());
+				double Peso =Double.parseDouble(textkilos.getText());
 				Residuo nuevo=new Residuo(estudiante,Nombre,Peso);
 			listaResiduos.add(nuevo);
 			muestraelementos();
