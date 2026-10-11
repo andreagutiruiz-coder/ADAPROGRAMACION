@@ -55,8 +55,8 @@ public class Residuo implements Comparable<Residuo> {
 		 return Double.compare(this.Peso, o.Peso);
 	 }
 	 
-	 @Override
-	 public String toString() {
-	     return estudiante+ ""+Nombre + " - " + Peso + " kg";
-	 }
+	@Override
+	public String toString() {
+	    return estudiante + " - " + Nombre + " - " + Peso + " kg";
+	}
 }
