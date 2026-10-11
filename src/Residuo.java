@@ -1,10 +1,7 @@
-
 public class Residuo implements Comparable<Residuo> {
 	private String estudiante;
 	private String Nombre;
 	private double Peso;
-	
-	
 
 	
 	public Residuo(String estudiante, String Nombre, double Peso) {
@@ -14,8 +11,6 @@ public class Residuo implements Comparable<Residuo> {
 		this.Peso = Peso;
 		
 	}
-
-	
 
 	public Residuo() {
 
@@ -64,5 +59,4 @@ public class Residuo implements Comparable<Residuo> {
 	 public String toString() {
 	     return estudiante+ ""+Nombre + " - " + Peso + " kg";
 	 }
-
 }
