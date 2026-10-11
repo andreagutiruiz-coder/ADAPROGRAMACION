@@ -48,7 +48,7 @@ DefaultListModel AcumuladoModelo = new DefaultListModel<>();
 	public GuiReciclaje() {
 
 		Residuomodelo.addElement("PET");
-        Residuomodelo.addElement("Cartón");
+        Residuomodelo.addElement("Carton");
         Residuomodelo.addElement("Aluminio");
 
 
@@ -111,10 +111,9 @@ DefaultListModel AcumuladoModelo = new DefaultListModel<>();
 				String tipo = (String) listResiduo.getSelectedValue(); 
 				double peso = Double.parseDouble(textKilos.getText());
 				String estudiante = textEstudiante.getText();
-				Residuo nuevo = new Residuo(tipo, estudiante, peso);
+				Residuo nuevo = new Residuo(estudiante, tipo, peso);
 				listaResiduos.add(nuevo);
 				JOptionPane.showMessageDialog(null, "Guardado correctamente");
-				textEstudiante.setText("");
 				textKilos.setText("");
 				listResiduo.clearSelection();
 			}
@@ -125,39 +124,38 @@ DefaultListModel AcumuladoModelo = new DefaultListModel<>();
 		JButton btnCalcular = new JButton("Calcular Puntos");
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String estudiante =textEstudiante.getText();
+				String estudiante = textEstudiante.getText();
 				double PET = 0;
 				double Carton = 0;
 				double Aluminio = 0;
-                int ppet =25;
-                int pAlum=40;
-                int pcart=15;
+				int ppet = 25;
+				int pAlum = 40;
+				int pcart = 15;
+
 				for (Residuo r : listaResiduos) {
-					 if (r.getEstudiante().equals(estudiante)) {
-				    if (r.getNombre().equalsIgnoreCase("PET")) {
-				        PET = PET +r.getPeso();
-				        
-				    } else if (r.getNombre().equalsIgnoreCase("Carton")) {
-				        Carton=Carton + r.getPeso();
-				        
-				       
-				    } else if (r.getNombre().equalsIgnoreCase("Aluminio")) {
-				        Aluminio=Aluminio + r.getPeso();
-				      
-				    }
-				    double puntosp = PET * ppet;
-					double puntosc = Carton * pcart;
-					double puntosa = Aluminio * pAlum;
-					double Acumulado = puntosp + puntosc + puntosa;
-				
-				    	 
-					 AcumuladoModelo.removeAllElements();
-					 AcumuladoModelo.addElement("PET de puntaje "+puntosp);
-					 AcumuladoModelo.addElement("Carton de puntaje "+puntosc);
-					 AcumuladoModelo.addElement("Aluminio de puntaje "+puntosa);
-					AcumuladoModelo.addElement("totalacumulado "+Acumulado);
-			}}
+					if (r.getEstudiante().equals(estudiante)) {
+						if (r.getNombre().equalsIgnoreCase("PET")) {
+							PET = PET + r.getPeso();
+						} else if (r.getNombre().equalsIgnoreCase("Carton")) {
+							Carton = Carton + r.getPeso();
+						} else if (r.getNombre().equalsIgnoreCase("Aluminio")) {
+							Aluminio = Aluminio + r.getPeso();
+						}
+					}
 				}
+
+				double puntosp = PET * ppet;
+				double puntosc = Carton * pcart;
+				double puntosa = Aluminio * pAlum;
+				double Acumulado = puntosp + puntosc + puntosa;
+
+				AcumuladoModelo.removeAllElements();
+				AcumuladoModelo.addElement("PET de puntaje " + puntosp);
+				AcumuladoModelo.addElement("Carton de puntaje " + puntosc);
+				AcumuladoModelo.addElement("Aluminio de puntaje " + puntosa);
+				AcumuladoModelo.addElement("Total acumulado " + Acumulado);
+			}
+				
 		});
 		menuBar.add(btnCalcular);
 
