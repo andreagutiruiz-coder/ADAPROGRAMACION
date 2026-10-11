@@ -17,13 +17,12 @@ import java.awt.event.ActionEvent;
 
 public class GuiReciclaje extends JFrame {
 
-DefaultListModel<Residuo> Residuomodelo = new DefaultListModel();	
 ArrayList <Residuo> listaResiduos= new ArrayList<>();
+DefaultListModel Residuomodelo = new DefaultListModel<>();	
 DefaultListModel AcumuladoModelo = new DefaultListModel<>();
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textEstudiante;
-	private JTextField textNombre;
 	private JTextField textKilos;
 	
 
@@ -48,16 +47,20 @@ DefaultListModel AcumuladoModelo = new DefaultListModel<>();
 	 */
 	public GuiReciclaje() {
 
-	
+		Residuomodelo.addElement("PET");
+        Residuomodelo.addElement("Cartón");
+        Residuomodelo.addElement("Aluminio");
+
+
         
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 612, 404);
 		getContentPane().setLayout(null);
 
-		JList list = new JList();
-		list.setBounds(34, 149, 121, 145);
-		list.setModel(Residuomodelo);
-		getContentPane().add(list);
+		JList listResiduo = new JList();
+		listResiduo.setBounds(60, 106, 121, 145);
+		listResiduo.setModel(Residuomodelo);
+		getContentPane().add(listResiduo);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 612, 404);
@@ -65,7 +68,7 @@ DefaultListModel AcumuladoModelo = new DefaultListModel<>();
 		
 		
 		JLabel lblNewLabel = new JLabel("RESIDUO");
-		lblNewLabel.setBounds(68, 107, 44, 12);
+		lblNewLabel.setBounds(87, 84, 44, 12);
 		getContentPane().add(lblNewLabel);
 
 
@@ -88,25 +91,14 @@ DefaultListModel AcumuladoModelo = new DefaultListModel<>();
 		textEstudiante.setBounds(136, 10, 96, 18);
 		getContentPane().add(textEstudiante);
 		textEstudiante.setColumns(10);
-		
-		textNombre = new JTextField();
-		textNombre.setBounds(136, 35, 96, 18);
-		getContentPane().add(textNombre);
-		textNombre.setColumns(10);
-		
-
-		
-		JLabel lblNewLabel_3 = new JLabel("Tipo");
-		lblNewLabel_3.setBounds(34, 38, 44, 12);
-		getContentPane().add(lblNewLabel_3);
 
 		textKilos = new JTextField();
-		textKilos.setBounds(136, 63, 96, 18);
+		textKilos.setBounds(146, 38, 96, 18);
 		getContentPane().add(textKilos);
 		textKilos.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Peso Recolectado en KG:");
-		lblNewLabel_5.setBounds(10, 69, 208, 12);
+		lblNewLabel_5.setBounds(10, 41, 208, 12);
 		getContentPane().add(lblNewLabel_5);
 		
 
@@ -116,16 +108,15 @@ DefaultListModel AcumuladoModelo = new DefaultListModel<>();
 		JButton btnNewButton = new JButton("Agregar Recolectado");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {		
-					String estudiante =textEstudiante.getText();
-					String Nombre= textNombre.getText();
-					double Peso =Double.parseDouble(textKilos.getText());
-					Residuo nuevo=new Residuo(estudiante,Nombre,Peso);
+				String tipo = (String) listResiduo.getSelectedValue(); 
+				double peso = Double.parseDouble(textKilos.getText());
+				String estudiante = textEstudiante.getText();
+				Residuo nuevo = new Residuo(tipo, estudiante, peso);
 				listaResiduos.add(nuevo);
 				JOptionPane.showMessageDialog(null, "Guardado correctamente");
-				textNombre.setText("");
+				textEstudiante.setText("");
 				textKilos.setText("");
-				list.clearSelection();
-				muestraelementos();
+				listResiduo.clearSelection();
 			}
 			
 		});
@@ -135,14 +126,9 @@ DefaultListModel AcumuladoModelo = new DefaultListModel<>();
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String estudiante =textEstudiante.getText();
-				String Nombre= textNombre.getText();
 				double PET = 0;
 				double Carton = 0;
 				double Aluminio = 0;
-				double puntosp=0;
-				double puntosc=0;
-				double puntosa=0;
-				double Acumulado=0;
                 int ppet =25;
                 int pAlum=40;
                 int pcart=15;
@@ -150,36 +136,31 @@ DefaultListModel AcumuladoModelo = new DefaultListModel<>();
 					 if (r.getEstudiante().equals(estudiante)) {
 				    if (r.getNombre().equalsIgnoreCase("PET")) {
 				        PET = PET +r.getPeso();
-				        puntosp= PET*ppet;
-				       
+				        
 				    } else if (r.getNombre().equalsIgnoreCase("Carton")) {
 				        Carton=Carton + r.getPeso();
-				        puntosc= Carton*pcart;
 				        
 				       
 				    } else if (r.getNombre().equalsIgnoreCase("Aluminio")) {
 				        Aluminio=Aluminio + r.getPeso();
-				        puntosa= Aluminio*pAlum;
-				        
+				      
 				    }
-				    Acumulado=puntosp+puntosc+puntosa;
-				}
+				    double puntosp = PET * ppet;
+					double puntosc = Carton * pcart;
+					double puntosa = Aluminio * pAlum;
+					double Acumulado = puntosp + puntosc + puntosa;
+				
 				    	 
 					 AcumuladoModelo.removeAllElements();
 					 AcumuladoModelo.addElement("PET de puntaje "+puntosp);
 					 AcumuladoModelo.addElement("Carton de puntaje "+puntosc);
 					 AcumuladoModelo.addElement("Aluminio de puntaje "+puntosa);
 					AcumuladoModelo.addElement("totalacumulado "+Acumulado);
-			}
+			}}
 				}
 		});
 		menuBar.add(btnCalcular);
 
 	}
-public void muestraelementos() {
-	Residuomodelo.removeAllElements();
-	for(Residuo i:listaResiduos) {
-		Residuomodelo.addElement(i);
-		}
-}
+
 }
